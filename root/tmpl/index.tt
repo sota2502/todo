@@ -1,59 +1,26 @@
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
-    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="ja" lang="ja">
-<head>
-<meta http-equiv="Content-Language" content="ja" />
-<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-<link rel="stylesheet" href="/static/css/bootstrap.css" type="text/css" />
-</head>
-<body>
+[% INCLUDE includes/header.tt %]
 
 <div class="container">
-<h1>Register</h1>
 
-[% IF error %]
-<div class="alert alert-block alert-error">
-<h4 class="alert-heading">[% error | html %]</h4>
-</div>
-[% END %]
+[% INCLUDE includes/navi.tt %]
 
-<form class="form-horizontal" method="post" action="/register">
-<label class="control-label" for="email">email</label>
-<div class="controls">
-<input type="text" id="email" name="email" value="[% email | html %]" />
-</div>
+<h1>Profile</h1>
 
-<label class="control-label" for="password">password</label>
-<div class="controls">
-<input type="password" id="password" name="password" />
-</div>
+<table class="table">
 
-<div class="form-actions">
-<button type="submit" class="btn btn-primary">送信</button>
-</div>
+<tr>
+<td>User ID</td>
+<td>[% user_id | html %]</td>
+</tr>
 
-</form>
+<tr>
+<td>E-mail</td>
+<td>[% email | html %]</td>
+</tr>
 
-<h1>Login</h1>
+</table>
 
-<form class="form-horizontal" method="post" action="/login">
-<label class="control-label" for="email">email</label>
-<div class="controls">
-<input type="text" id="email" name="email" value="[% email | html %]" />
-</div>
-
-<label class="control-label" for="password">password</label>
-<div class="controls">
-<input type="password" id="password" name="password" />
-</div>
-
-<div class="form-actions">
-<button type="submit" class="btn btn-primary">送信</button>
-</div>
-
-</form>
 </div>
 <!-- /div.container -->
 
-</body>
-</html>
+[% INCLUDE includes/header.tt %]

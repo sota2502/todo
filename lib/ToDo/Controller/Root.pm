@@ -2,8 +2,16 @@ package ToDo::Controller::Root;
 use Moose;
 use namespace::autoclean;
 use Digest::SHA1;
+use List::MoreUtils qw/any/;
 
 BEGIN { extends 'Catalyst::Controller' }
+
+our @UNREQUIRED_LOGIN = qw/
+    register
+    login
+    logout
+/;
+
 
 #
 # Sets the actions in this controller to be registered with no prefix
@@ -28,34 +36,33 @@ The root page (/)
 =cut
 
 sub index :Path :Args(0) {
-    my ( $self, $c ) = @_;
+    my ($self, $c) = @_;
 
-    $c->stash->{template} = 'index.tt';
+    my ($user_id, $email) = map { $c->user->get($_) } qw/user_id email/;
 
-    $c->stash->{email} = $c->req->param('email') || '';
-
-    my $cnt = $c->session->{cnt} || 1;
-    $c->stash->{count} = $cnt;
-    $c->session->{cnt} = ++$cnt;
-
-    # Hello World
-    # $c->response->body( $c->welcome_message );
+    foreach my $key (qw/user_id email/) {
+        $c->stash->{$key} = $c->user->get($key);
+    }
 }
 
 sub register :Local {
     my ( $self, $c ) = @_;
 
-    my $email    = $c->req->param('email');
-    my $password = $c->req->param('password');
+    my $email    = $c->req->param('email') || q{};
+    my $password = $c->req->param('password') || q{};
 
-    unless ( $self->_register($c, $email, $password) ) {
-        # $c->stash->{error} = 'Failed register';
+    if ( $email && $password ) {
+        if ( $self->_register($c, $email, $password) ) {
+            $c->res->body('Successed register');
+            return 1;
+        }
+
+        $c->stash->{error} = 'Failed register';
     }
 
     $c->stash->{email} = $email;
-
-    $c->forward('index');
 }
+
 
 sub _register {
     my ($self, $c, $email, $password) = @_;
@@ -89,19 +96,39 @@ sub login :Local {
     my ($self, $c) = @_;
     my ($email, $password) = map { $c->request->params->{$_} } qw/email password/;
 
-    unless ( $email && $password ) {
-        $c->stash->{error} = 'Input email and password';
-        $c->detach('index');
-        return;
-    }
 
-    unless ( $c->authenticate({email => $email, password => $password}) ) {
+    if ( $email && $password ) {
+        if ( $c->authenticate({email => $email, password => $password}) ) {
+            $c->res->redirect($c->uri_for('/'));
+            return 1;
+        }
+
         $c->stash->{error} = 'Failed authentication';
-        $c->detach('index');
-        return;
+    }
+}
+
+sub logout :Local {
+    my ($self, $c) = @_;
+
+    $c->logout;
+
+    $c->res->redirect($c->uri_for('/'));
+}
+
+sub auto : Private {
+    my ($self, $c) = @_;
+
+    
+    if ( any { $c->action->reverse eq $_ } @UNREQUIRED_LOGIN ) {
+        return 1;
     }
 
-    $c->response->body('Successed authentication');
+    unless ( $c->user_exists ) {
+        $c->res->redirect($c->uri_for('/login'));
+        return 0;
+    }
+
+    return 1;
 }
 
 =head2 default

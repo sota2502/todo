@@ -1,0 +1,12 @@
+[% INCLUDE includes/header.tt %]
+
+<div class="container">
+
+[% INCLUDE includes/navi_logout.tt %]
+
+[% INCLUDE includes/register_form.tt %]
+
+</div>
+<!-- /div.container -->
+
+[% INCLUDE includes/header.tt %]

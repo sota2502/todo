@@ -1,0 +1,12 @@
+<div class="navbar">
+<div class="navbar-inner">
+<a class="brand" href="#">ToDo</a>
+<div class="container">
+<ul class="nav">
+<li><a href="/">Top</a></li>
+<li><a href="/logout">Logout</a></li>
+</ul>
+</div>
+</div>
+</div>
+<!-- div.navbar -->

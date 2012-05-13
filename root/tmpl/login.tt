@@ -1,0 +1,19 @@
+[% INCLUDE includes/header.tt %]
+
+<div class="container">
+
+[% INCLUDE includes/navi_logout.tt %]
+
+[% IF error %]
+<div class="alert alert-block alert-error">
+[% error | html %]
+</div>
+[% END %]
+
+
+[% INCLUDE includes/login_form.tt %]
+
+</div>
+<!-- /div.container -->
+
+[% INCLUDE includes/header.tt %]
