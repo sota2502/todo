@@ -1,0 +1,13 @@
+CREATE TABLE task (
+    task_id bigint(10) unsigned NOT NULL,
+    member_id int(10) unsigned NOT NULL,
+    title VARCHAR(40) NOT NULL,
+    status tinyint(3) unsigned NOT NULL,
+    created_at timestamp NOT NULL,
+    PRIMARY KEY (task_id),
+    KEY idx1 member_id, created_at
+);
+
+CREATE TABLE task_id_pod (
+    task_id bigint(20) unsigned NOT NULL
+);

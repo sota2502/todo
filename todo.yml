@@ -1,0 +1,21 @@
+# rename this file to todo.yml and put a ':' after 'name' if
+# you want to use YAML like in old versions of Catalyst
+---
+name: ToDo
+
+session:
+    path: /home/sota/catalyst/todo/session
+
+Charsets::Japanese:
+    charsets: 'UTF-8'
+
+View::TT:
+    INCLUDE_PATH:
+        - 'root/tmpl'
+    TEMPLATE_EXTENSION: '.tt'
+
+Model::DBIC:
+    connect_info:
+        - 'dbi:SQLite:dbname=data/todo.db'
+        - ''
+        - ''
