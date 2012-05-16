@@ -1,0 +1,1 @@
+./script/todo_create.pl model ToDoDB DBIC::Schema ToDo::Schema create=static dbi:SQLite:dbname=data/todo.db todouser todopass AutoCommit=1
