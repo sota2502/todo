@@ -20,6 +20,9 @@
 
 </table>
 
+[% INCLUDE includes/task_form.tt %]
+[% INCLUDE includes/task_list.tt %]
+
 </div>
 <!-- /div.container -->
 

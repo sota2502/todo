@@ -1,0 +1,18 @@
+<h1>Task Form</h1>
+
+<form class="form-horizontal" method="post" action="/task/add">
+<label class="control-label" for="email">Title</label>
+<div class="controls">
+<input type="text" id="title" name="title" value="[% title | html %]" />
+</div>
+
+<label class="control-label" for="password">Description</label>
+<div class="controls">
+<textarea name="description">[% description | html %]</textarea>
+</div>
+
+<div class="form-actions">
+<button type="submit" class="btn btn-primary">Send</button>
+</div>
+
+</form>

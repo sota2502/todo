@@ -1,0 +1,15 @@
+<h1>Tasks</h1>
+<table class="table">
+<tr>
+<th>TaskID</th>
+<th>Title</th>
+<th>Description</th>
+</tr>
+[% FOREACH task = task_list %]
+<tr>
+<td>task.task_id</td>
+<td>task.title</td>
+<td>task.description</td>
+</tr>
+[% END %]
+</table>
