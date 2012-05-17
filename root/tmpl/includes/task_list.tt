@@ -1,4 +1,6 @@
 <h1>Tasks</h1>
+[% IF task_list.size > 0 %]
+
 <table class="table">
 <tr>
 <th>TaskID</th>
@@ -7,9 +9,15 @@
 </tr>
 [% FOREACH task = task_list %]
 <tr>
-<td>task.task_id</td>
-<td>task.title</td>
-<td>task.description</td>
+<td>[% task.task_id %]</td>
+<td>[% task.title %]</td>
+<td>[% task.description %]</td>
 </tr>
 [% END %]
 </table>
+
+[% ELSE %]
+
+Not Found
+
+[% END %]

@@ -1,0 +1,26 @@
+[% INCLUDE includes/header.tt %]
+
+<div class="container">
+
+[% INCLUDE includes/navi.tt %]
+
+<h1>Profile</h1>
+
+<table class="table">
+
+<tr>
+<td>User ID</td>
+<td>[% user_id | html %]</td>
+</tr>
+
+<tr>
+<td>E-mail</td>
+<td>[% email | html %]</td>
+</tr>
+
+</table>
+
+</div>
+<!-- /div.container -->
+
+[% INCLUDE includes/footer.tt %]

@@ -4,26 +4,10 @@
 
 [% INCLUDE includes/navi.tt %]
 
-<h1>Profile</h1>
-
-<table class="table">
-
-<tr>
-<td>User ID</td>
-<td>[% user_id | html %]</td>
-</tr>
-
-<tr>
-<td>E-mail</td>
-<td>[% email | html %]</td>
-</tr>
-
-</table>
-
 [% INCLUDE includes/task_form.tt %]
 [% INCLUDE includes/task_list.tt %]
 
 </div>
 <!-- /div.container -->
 
-[% INCLUDE includes/header.tt %]
+[% INCLUDE includes/footer.tt %]

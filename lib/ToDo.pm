@@ -20,6 +20,7 @@ use Catalyst qw/
     Session::Store::FastMmap
     Session::State::Cookie
     Authentication
+    FormValidator::Simple
 /;
 
 extends 'Catalyst';
@@ -62,6 +63,14 @@ __PACKAGE__->config(
                 use_userdata_from_session => 1,
             },
         },
+    },
+    'validator' => {
+        plugins => [qw/Japanese/],
+        options => {
+            charset => 'utf8',
+        },
+        profiles => __PACKAGE__->path_to('profiles.yml'),
+        message_format => '<div class="alert alert-block alert-success"><h4 class="alert-heading">%s</h4></div>',
     },
 );
 

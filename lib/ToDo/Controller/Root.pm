@@ -38,11 +38,12 @@ The root page (/)
 sub index :Path :Args(0) {
     my ($self, $c) = @_;
 
-    my ($user_id, $email) = map { $c->user->get($_) } qw/user_id email/;
+    my @tasks = $c->model('ToDoDB::Task')->search(
+        { user_id => $c->user->get('user_id') },
+        { order_by => { -desc => 'updated_at' } },
+    );
 
-    foreach my $key (qw/user_id email/) {
-        $c->stash->{$key} = $c->user->get($key);
-    }
+    $c->stash->{task_list} = \@tasks;
 }
 
 sub register :Local {

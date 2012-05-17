@@ -6,7 +6,7 @@
 </div>
 [% END %]
 
-<form class="form-horizontal" method="post" action="/register_execute">
+<form class="form-horizontal" method="post" action="/register">
 <label class="control-label" for="email">email</label>
 <div class="controls">
 <input type="text" id="email" name="email" value="[% email | html %]" />
