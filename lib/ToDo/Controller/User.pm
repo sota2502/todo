@@ -24,7 +24,7 @@ Catalyst Controller.
 sub index :Path :Args(0) {
     my ( $self, $c ) = @_;
 
-    foreach my $attr (qw/user_id emaiil/) {
+    foreach my $attr (qw/user_id email/) {
         $c->stash->{$attr} = $c->user->get($attr);
     }
 

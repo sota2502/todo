@@ -1,0 +1,11 @@
+[% IF c.form.has_error %]
+
+<div class="alert alert-block alert-error">
+
+[% FOREACH message IN error.messages(c.form.messages('task/add')) %]
+<p>[% message %]</p>
+[% END %]
+
+</div>
+
+[% END %]

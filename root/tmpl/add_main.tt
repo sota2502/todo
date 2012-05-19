@@ -1,0 +1,14 @@
+[% INCLUDE includes/header.tt %]
+
+<div class="container">
+
+[% INCLUDE includes/navi.tt %]
+
+[% INCLUDE includes/error.tt %]
+
+[% INCLUDE includes/task_form.tt %]
+
+</div>
+<!-- /div.container -->
+
+[% INCLUDE includes/footer.tt %]

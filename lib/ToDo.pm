@@ -21,6 +21,7 @@ use Catalyst qw/
     Session::State::Cookie
     Authentication
     FormValidator::Simple
+    FormValidator::Simple::Auto
 /;
 
 extends 'Catalyst';
@@ -69,8 +70,9 @@ __PACKAGE__->config(
         options => {
             charset => 'utf8',
         },
+        messages => __PACKAGE__->path_to('messages.yml'),
         profiles => __PACKAGE__->path_to('profiles.yml'),
-        message_format => '<div class="alert alert-block alert-success"><h4 class="alert-heading">%s</h4></div>',
+        message_format => '%s',
     },
 );
 

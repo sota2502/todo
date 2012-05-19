@@ -12,6 +12,7 @@
 </div>
 
 <div class="form-actions">
+<input type="hidden" name="mode" value="commit" />
 <button type="submit" class="btn btn-primary">Send</button>
 </div>
 

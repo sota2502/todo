@@ -1,4 +1,4 @@
-package ToDo::Controller::Task;
+package ToDo::Controller::Task::Add;
 use Moose;
 use namespace::autoclean;
 
@@ -6,9 +6,12 @@ BEGIN {extends 'Catalyst::Controller'; }
 
 use Date::Calc;
 
+our $TITLE_LENGTH       = 40;
+our $DESCRIPTION_LENGTH = 1000;
+
 =head1 NAME
 
-ToDo::Controller::Task - Catalyst Controller
+ToDo::Controller::Task::Add - Catalyst Controller
 
 =head1 DESCRIPTION
 
@@ -26,18 +29,39 @@ Catalyst Controller.
 sub index :Path :Args(0) {
     my ( $self, $c ) = @_;
 
-    $c->response->body('Matched ToDo::Controller::Task in Task.');
+    my $mode = $c->req->param('mode') || 'main';
+    $c->detach($mode);
 }
 
-=cut
-sub add : Local {
+sub main :Private {
+    my ( $self, $c ) = @_;
+
+    $c->stash->{title}       = $c->req->param('title');
+    $c->stash->{description} = $c->req->param('description');
+
+    $c->stash->{template} = 'add_main.tt';
+}
+
+sub commit: Private {
     my ( $self, $c ) = @_;
 
     my $user = $c->user;
     return unless ( $user );
 
-    my ($title, $description) = map { $c->req->param($_) } qw/title description/;
-    return unless ( $title && $description );
+    # validation
+    $c->form(
+        title       => ['NOT_BLANK', ['LENGTH', 1, $TITLE_LENGTH]],
+        description => [['LENGTH', 0, $DESCRIPTION_LENGTH]],
+    );
+
+    if ( $c->form->has_error ) {
+        $c->stash->{error} = $c->form;
+        $c->detach('main');
+        return 0;
+    }
+
+    my $title       = $c->req->param('title');
+    my $description = $c->req->param('description');
 
     my $row = $c->model('ToDoDB::Task')->create({
         user_id => $user->user_id,
@@ -50,23 +74,10 @@ sub add : Local {
 
     $c->res->redirect($c->uri_for('/'));
 }
-=cut
-
-sub auto : Private {
-    my ($self, $c) = @_;
-
-    unless ( $c->user_exists ) {
-        $c->res->redirect($c->uri_for('/login'));
-        return 0;
-    }
-
-    return 1;
-}
 
 sub now {
     return sprintf "%04d%02d%02d%02d%02d%02d", Date::Calc::Today_and_Now;
 }
-
 
 =head1 AUTHOR
 

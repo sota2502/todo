@@ -1,0 +1,6 @@
+task/add:
+  title:
+    - NOT_BLANK
+    - LENGTH
+  description:
+    - LENGTH

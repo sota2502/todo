@@ -1,0 +1,7 @@
+---
+task/add:
+  title:
+    NOT_BLANK: Title is empty
+    LENGTH: Title length is more than 1 and less than 1000
+  description:
+    LENGTH: Description length is less than 1000

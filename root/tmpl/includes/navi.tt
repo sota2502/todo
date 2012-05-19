@@ -4,7 +4,7 @@
 <div class="container">
 <ul class="nav">
 <li><a href="/">Top</a></li>
-<li><a href="/">User</a></li>
+<li><a href="/user">User</a></li>
 <li><a href="/logout">Logout</a></li>
 </ul>
 </div>
