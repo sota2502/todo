@@ -1,6 +1,6 @@
 <h1>Task Form</h1>
 
-<form class="form-horizontal" method="post" action="/task/add">
+<form class="form-horizontal well" method="post" action="/task/add">
 <label class="control-label" for="email">Title</label>
 <div class="controls">
 <input type="text" id="title" name="title" value="[% title | html %]" />

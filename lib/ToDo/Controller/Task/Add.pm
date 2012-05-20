@@ -55,6 +55,7 @@ sub commit: Private {
     );
 
     if ( $c->form->has_error ) {
+use Data::Dumper; warn Dumper $c->form->messages('task/add');
         $c->stash->{error} = $c->form;
         $c->detach('main');
         return 0;
@@ -81,7 +82,7 @@ sub now {
 
 =head1 AUTHOR
 
-中森 創太
+Souta Nakamori
 
 =head1 LICENSE
 

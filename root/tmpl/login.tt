@@ -16,4 +16,4 @@
 </div>
 <!-- /div.container -->
 
-[% INCLUDE includes/header.tt %]
+[% INCLUDE includes/footer.tt %]

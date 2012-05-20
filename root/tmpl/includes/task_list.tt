@@ -1,17 +1,15 @@
 <h1>Tasks</h1>
 [% IF task_list.size > 0 %]
 
-<table class="table">
+<table class="table well">
 <tr>
 <th>TaskID</th>
 <th>Title</th>
-<th>Description</th>
 </tr>
 [% FOREACH task = task_list %]
 <tr>
-<td>[% task.task_id %]</td>
-<td>[% task.title %]</td>
-<td>[% task.description %]</td>
+<td><a href="/task/[% task.task_id | url %]">[% task.task_id | html %]</a></td>
+<td><a href="/task/[% task.task_id | url %]">[% task.title | html %]</a></td>
 </tr>
 [% END %]
 </table>

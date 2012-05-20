@@ -1,0 +1,37 @@
+[% INCLUDE includes/header.tt %]
+
+<div class="container">
+
+[% INCLUDE includes/navi.tt %]
+
+<dl class="dl-horizontal">
+
+<dt>Title</dt>
+<dd>[% entry.title | html %]</dd>
+
+<dt>Description</dt>
+<dd>
+[% IF entry.description %]
+[% entry.description | html %]
+[% ELSE %]
+&nbsp;
+[% END %]
+</dd>
+
+<dt>Status</dt>
+<dd>[% entry.status | html %]</dd>
+
+<dt>Created At</dt>
+<dd>[% entry.created_at | html %]</dd>
+
+<dt>Updated At</dt>
+<dd>[% entry.updated_at | html %]</dd>
+
+</dl>
+<!-- dl.dl-horizontal -->
+
+
+</div>
+<!-- /div.container -->
+
+[% INCLUDE includes/footer.tt %]

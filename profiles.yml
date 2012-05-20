@@ -1,6 +1,9 @@
 task/add:
   title:
-    - NOT_BLANK
-    - LENGTH
+    - rule: NOT_BLANK
+      message: title is empty
+    - rule: LENGTH
+      message: title length less than 40
   description:
-    - LENGTH
+    - rule: LENGTH
+      message: description length less than 1000

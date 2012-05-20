@@ -1,0 +1,12 @@
+[% INCLUDE includes/header.tt %]
+
+<div class="container">
+
+[% INCLUDE includes/navi.tt %]
+
+[% INCLUDE includes/task_list.tt %]
+
+</div>
+<!-- /div.container -->
+
+[% INCLUDE includes/footer.tt %]

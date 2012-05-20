@@ -1,8 +1,8 @@
-[% IF c.form.has_error %]
+[% IF error.has_error %]
 
 <div class="alert alert-block alert-error">
 
-[% FOREACH message IN error.messages(c.form.messages('task/add')) %]
+[% FOREACH message IN error.messages('task/add') %]
 <p>[% message %]</p>
 [% END %]
 

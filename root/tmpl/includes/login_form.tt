@@ -1,6 +1,6 @@
 <h1>Login</h1>
 
-<form class="form-horizontal" method="post" action="/login">
+<form class="form-horizontal well" method="post" action="/login">
 <label class="control-label" for="email">email</label>
 <div class="controls">
 <input type="text" id="email" name="email" value="[% email | html %]" />
