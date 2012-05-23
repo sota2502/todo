@@ -37,7 +37,6 @@ The root page (/)
 
 sub index :Path :Args(0) {
     my ($self, $c) = @_;
-warn $c->token;
 
     my @tasks = $c->model('ToDoDB::Task')->search(
         { user_id => $c->user->get('user_id') },
