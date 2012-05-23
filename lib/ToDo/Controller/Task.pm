@@ -79,7 +79,8 @@ sub json : Local {
 
     my @task_list = map { __object_to_plain($_) } @tasks;
 
-    $c->stash->{task_list} = \@task_list;
+    $c->stash->{count}   = scalar @task_list;
+    $c->stash->{entries} = \@task_list;
     $c->forward('ToDo::View::JSON');
 }
 
@@ -103,8 +104,8 @@ sub __object_to_plain {
 
     return {
         task_id => $entry->task_id,
-        title   => $entry->title,
-        description => $entry->description || q{},
+        title   => decode('utf8', $entry->title),
+        description => decode('utf8', $entry->description || q{}),
         status      => $entry->status,
         created_at  => ( $entry->created_at ) ? $entry->created_at->datetime : '',
         updated_at  => ( $entry->updated_at ) ? $entry->updated_at->datetime : '',
