@@ -23,6 +23,7 @@ use Catalyst qw/
     FormValidator::Simple
     FormValidator::Simple::Auto
 /;
+use Digest::SHA1;
 
 extends 'Catalyst';
 
@@ -79,6 +80,23 @@ __PACKAGE__->config(
 # Start the application
 __PACKAGE__->setup();
 
+sub token {
+    my $c = shift;
+
+    my @args = ($c->config->{secretkeys});
+    if ( $c->user_exists ) {
+        unshift @args, $c->user->user_id;
+    }
+
+    return Digest::SHA1::sha1_hex(@args);
+}
+
+sub validate_token {
+    my $c = shift;
+
+    my $token = $c->req->param('token');
+    return $token eq $c->token;
+}
 
 =head1 NAME
 

@@ -37,6 +37,7 @@ The root page (/)
 
 sub index :Path :Args(0) {
     my ($self, $c) = @_;
+warn $c->token;
 
     my @tasks = $c->model('ToDoDB::Task')->search(
         { user_id => $c->user->get('user_id') },
@@ -118,7 +119,6 @@ sub logout :Local {
 
 sub auto : Private {
     my ($self, $c) = @_;
-
     
     if ( any { $c->action->reverse eq $_ } @UNREQUIRED_LOGIN ) {
         return 1;
@@ -128,6 +128,8 @@ sub auto : Private {
         $c->res->redirect($c->uri_for('/login'));
         return 0;
     }
+
+    $c->stash->{token} = $c->token;
 
     return 1;
 }
